@@ -1,9 +1,9 @@
 <template>
-    <div id="student">
+    <div id="demo">
         <h1>学生姓名：{{name}}</h1>
         <h1>学生性别：{{sex}}</h1>
         <h1>学生年龄：{{age}}</h1>
-        <button @click="sendStudentName">我是谁</button>
+        <button @click="sendStudentName">把StudentName给School组件</button>
     </div>
 </template>
 
@@ -19,15 +19,14 @@
         },
         methods:{
             sendStudentName(){
-                //触发Student组件实例上的vegeta事件
-                this.$emit('drunkerl',this.name)
+                this.$bus.$emit('hello',this.name)
             }
         }
     }
 </script>
 
 <style scoped>
-    #student{
+    #demo{
         background-color: #03fcfc;
         padding: 5px;
         margin-top: 30px;

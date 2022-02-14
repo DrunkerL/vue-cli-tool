@@ -1,31 +1,32 @@
 <template>
-    <div id="school">
+    <div id="demo">
         <h1>学校名称:{{name}}</h1>
         <h1>学校地址:{{address}}</h1>
-        <button @click="sendSchoolName">把学校名称给App</button>
     </div>
 </template>
 
 <script>
     export default {
         name: "School",
-        props:['getSchoolName'],
         data(){
             return {
                 name:"SWUST",
                 address:"四川绵阳"
             }
         },
-        methods:{
-            sendSchoolName(){
-                this.getSchoolName(this.name)
-            }
+        mounted() {
+            this.$bus.$on('hello',(data)=>{
+                console.log("我是School，收到了数据",data);
+            })
+        },
+        beforeDestroy() {
+            this.$bus.$off('hello')
         }
     }
 </script>
 
 <style scoped>
-    #school{
+    #demo{
         background-color: #1cfc03;
         padding: 5px;
         margin-top: 30px;
